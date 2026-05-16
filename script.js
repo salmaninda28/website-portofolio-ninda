@@ -1,8 +1,4 @@
-/* ══════════════════════════════════════════
-   script.js — Salma Ninda Syahputri Portfolio
-   ══════════════════════════════════════════ */
 
-/* ── 2. Mobile menu: buka / tutup hamburger ── */
 const hamburger  = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 const iconOpen   = document.getElementById('icon-open');
@@ -20,26 +16,26 @@ function closeMobileMenu() {
   iconClose.classList.add('hidden');
 }
 
-/* ── 3. Scroll Reveal: animasi elemen muncul saat masuk viewport ── */
+
 const revealEls = document.querySelectorAll('.reveal');
 const observer  = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
-      observer.unobserve(e.target); // hentikan observasi setelah muncul
+      observer.unobserve(e.target); 
     }
   });
 }, { threshold: 0.12 });
 
 revealEls.forEach(el => observer.observe(el));
 
-/* ── 4. Contact Form: validasi & tampilkan toast notifikasi ── */
+
 function submitForm() {
   const name  = document.getElementById('contact-name').value.trim();
   const email = document.getElementById('contact-email').value.trim();
   const msg   = document.getElementById('contact-msg').value.trim();
 
-  // Jika ada field yang kosong, beri highlight merah
+
   if (!name || !email || !msg) {
     [['contact-name', name], ['contact-email', email], ['contact-msg', msg]].forEach(([id, val]) => {
       if (!val) {
@@ -52,15 +48,13 @@ function submitForm() {
         }, 2000);
       }
     });
-    return; // hentikan proses jika belum lengkap
+    return; 
   }
 
-  // Kosongkan semua field setelah berhasil
   document.getElementById('contact-name').value = '';
   document.getElementById('contact-email').value = '';
   document.getElementById('contact-msg').value   = '';
 
-  // Tampilkan toast "Data anda telah disimpan"
   const toast = document.getElementById('toast');
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 3200);
